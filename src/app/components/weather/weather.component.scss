@@ -1,0 +1,40 @@
+
+.card{
+    background-size: cover;
+}
+
+.clear {
+    background-image: url('../../../assets/img/clear.gif');
+}
+.clouds{
+    background-image: url('../../../assets/img/clouds.gif');
+}
+.fog{
+    background-image: url('../../../assets/img/fog.gif');
+}
+.mist{
+    background-image: url('../../../assets/img/fog.gif');
+}
+.rain{
+    background-image: url('../../../assets/img/rain.gif');
+}
+
+.snow{
+    background-image: url('../../../assets/img/snow.gif');
+}
+.thunderstorm{
+    background-image: url('../../../assets/img/thunderstorm.gif');
+}
+
+.sun {
+    color:yellow;
+  }
+
+// MAP
+
+ #map {
+  height: 400px;
+  margin: auto;
+  border-radius: 5px;
+
+}
