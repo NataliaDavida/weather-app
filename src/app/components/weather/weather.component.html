@@ -1,80 +1,86 @@
-<div class="container my-5">
-  <div class="row d-flex justify-content-center text-white">
-    <div class="col-5">
-        <div id="wrapper-bg" class="card" [ngClass]="{'clear':weather.weather[0].main==='Clear',
-            'clouds':weather.weather[0].main==='Clouds',
-            'fog':weather.weather[0].main==='Fog',
-            'mist':weather.weather[0].main==='Mist',
-            'rain':weather.weather[0].main==='Rain',
-            'snow':weather.weather[0].main==='Snow',
-            'thunderstorm':weather.weather[0].main==='Thunderstorm'
-            }">
-         <div class="card-header text-center border-0 ">
-         
-            <div class="mb-2" >{{weather.weather[0].main}}</div>
-        
-               <span class=" display-5 mb-2">{{weather.name}} </span><span class=" display-5 mb-2">{{weather.sys.country}}</span>
-               <p class=" display-1 mb-3" >{{weather.main.temp - 273.15 | number: '1.0-0'}}&deg;C</p>
-               <span>Humidity:  <span>{{weather.main.humidity}}%</span></span>
-             <br><br>
-         <div class="card-body border-top border-bottom text-center">
-            <div class="row">
-                <div class="col-3">
-                        <span class="d-block mb-2">Max temp</span>
-                    <span class="d-block">{{weather.main.temp_max - 273.15 | number: '1.0-0'}}&deg; C</span>
-                </div>
-                <div class="col-3">
-                    <span class="d-block mb-2">Min temp</span>
-                    <span class="d-block">{{weather.main.temp_min - 273.15 | number: '1.0-0'}}&deg; C</span>
-                </div>
-                <div class="col-3">
-                    <span class="d-block mb-2">Feels like</span>
-                    <span class="d-block">{{weather.main.feels_like - 273.15 | number: '1.0-0'}}&deg; C</span>
-                </div>
-                <div class="col-3">
-                    <span class="d-block mb-2">Wind speed</span>
-                    <span class="d-block">{{weather.wind.speed }}m/s</span>
-                </div>
-            </div>
-         </div>
-         <div class="card-body">
-            <div class="row">
-                <div class="col md-6 text-left" >
-                    <span>Sunrise</span>
-                </div>
-                <div class="col md-2"><i class="fas fa-1x fa-sun sun"></i>
-                </div>
-                <div class="col md-4 text-end" >
-                    <span>{{weather.sys.sunrise * 1000 | date: "hh:mm a" }}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col md-6 text-left">
-                    <span>Sunset</span>
-                </div>
-                <div class="col md-2"><i class="fas fa-1x fa-moon moon"></i>
-                </div>
-                <div class="col md-4 text-end">
-                    <span>{{weather.sys.sunset * 1000 | date: "hh:mm a"  }}</span> 
-                </div>
-            </div>
+<div class="card" [ngClass]="{'clear': weather.weather[0].main==='Clear',
+'clouds':weather.weather[0].main==='Clouds',
+'fog': weather.weather[0].main==='Fog',
+'mist': weather.weather[0].main==='Mist',
+'rain': weather.weather[0].main==='Rain',
+'snow': weather.weather[0].main==='Snow',
+'thunderstorm': weather.weather[0].main==='Thunderstorm'
+}">
+    <div class="container my-5 text-center ">
+        <p class="display-1 mb-3">Forecast for {{weather.name}} {{weather.sys.country}} </p>
+        <div class="input-group" >
+            <input class="form-control" type="text" #userInput placeholder="Enter city name" >
+            <button class="input-group-text btn btn-outline-light" (click)="getCity(userInput.value)">Search</button>
         </div>
-    </div>
-    </div>
-            <br>
-                <div class="input-group" >
-                    <input class="form-control" type="text" #userInput placeholder="Enter city name" >
-                    <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">Search</button>
-                </div>
-            <br>
-            <div class="row">
-                <div class="col md-6 text-left" >                  
-                    <div id="map">
+        <br>
+      <div class="row d-flex justify-content-md-around text-white">
+        <div class="col-6">
+               <div id="wrapper-bg" class="card"[ngClass]="{'clear': weather.weather[0].main==='Clear',
+                    'clouds':weather.weather[0].main==='Clouds',
+                    'fog': weather.weather[0].main==='Fog',
+                    'mist': weather.weather[0].main==='Mist',
+                    'rain': weather.weather[0].main==='Rain',
+                    'snow': weather.weather[0].main==='Snow',
+                    'thunderstorm': weather.weather[0].main==='Thunderstorm'
+                    }">
+                 <div class="card-header text-center border-0 ">
+                    <div class="mb-2" >{{weather.weather[0].main}}</div>
+                       <span class=" display-5 mb-2">{{weather.name}} </span><span class=" display-5 mb-2">{{weather.sys.country}}</span>
+                       <p class=" display-1 mb-3" >{{weather.main.temp - 273.15 | number: '1.0-0'}}&deg;C</p>
+                       <span>Humidity:  <span>{{weather.main.humidity}}%</span></span>
+                     <br><br>
+                 </div>
+                     <div class="card-body border-top border-bottom text-center">
+                        <div class="row">
+                            <div class="col-3">
+                                    <span class="d-block mb-2">Max temp</span>
+                                <span class="d-block">{{weather.main.temp_max - 273.15 | number: '1.0-0'}}&deg; C</span>
+                            </div>
+                            <div class="col-3">
+                                <span class="d-block mb-2">Min temp</span>
+                                <span class="d-block">{{weather.main.temp_min - 273.15 | number: '1.0-0'}}&deg; C</span>
+                            </div>
+                            <div class="col-3">
+                                <span class="d-block mb-2">Feels like</span>
+                                <span class="d-block">{{weather.main.feels_like - 273.15 | number: '1.0-0'}}&deg; C</span>
+                            </div>
+                            <div class="col-3">
+                                <span class="d-block mb-2">Wind speed</span>
+                                <span class="d-block">{{weather.wind.speed }}m/s</span>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col md-6 text-left" >
+                                <span>Sunrise</span>
+                            </div>
+                            <div class="col md-2"><i class="fas fa-1x fa-sun sun"></i>
+                            </div>
+                            <div class="col md-4 text-end" >
+                                <span>{{weather.sys.sunrise * 1000 | date: "hh:mm a" }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col md-6 text-left">
+                                <span>Sunset</span>
+                            </div>
+                            <div class="col md-2"><i class="fas fa-1x fa-moon moon"></i>
+                            </div>
+                            <div class="col md-4 text-end">
+                                <span>{{weather.sys.sunset * 1000 | date: "hh:mm a"  }}</span> 
+                            </div>
+                        </div>
                     </div>
-                </div> 
             </div>
-        </div >       
+        
+        </div>        
+        <div class="col-6 text-left" > 
+           <div #map class="map"></div>
+        </div> 
+      </div>
     </div>
+
 </div>
 
 

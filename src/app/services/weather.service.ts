@@ -16,9 +16,10 @@ export class WeatherService {
     .set('lat', lat)
     .set('lon', Ion)
     .set('appid', `${environment.API_KEY}`)
-
+    console.log(`${environment.BASE_URl}`, {params} )
     return this.http.get<Observable<any>>(`${environment.BASE_URl}`, {params} )
   }
+
   getCoords(city: string): Observable<any> {
     let params = new HttpParams()
     .set('q', city)

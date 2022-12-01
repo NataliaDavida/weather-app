@@ -1,3 +1,10 @@
+p {
+   color: white;
+}
+.input-group {
+    width: 500px;
+    margin: 0 auto;
+}
 
 .card{
     background-size: cover;
@@ -32,9 +39,13 @@
 
 // MAP
 
- #map {
-  height: 400px;
-  margin: auto;
-  border-radius: 5px;
+.map {
+    position: relative;
+    height: 440px;
+    margin: auto;
+    border-radius: 5px;
+  
+  }
 
-}
+  
+ 
